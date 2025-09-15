@@ -5,6 +5,7 @@ import prisma from './db'; // Import our prisma client
 import authRouter from './routes/auth';
 import userRouter from './routes/user';
 import cors from 'cors';
+import priceRouter from './routes/prices';
 
 dotenv.config();
 
@@ -17,7 +18,7 @@ app.use(cors());
 app.use(express.json());
 app.use('/api/auth', authRouter);
 app.use('/api/user', userRouter);
-
+app.use('/api/prices', priceRouter);
 
 app.get('/', (req, res) => {
   res.send('Crypto Exchange Backend is running!');
