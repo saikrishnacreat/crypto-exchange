@@ -1,0 +1,38 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Define the User model (table)
+model User {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  passwordHash String
+  name         String?
+  createdAt    DateTime @default(now())
+
+  // Relation: A user can have many wallets
+  wallets Wallet[]
+}
+
+// Define the Wallet model (table)
+model Wallet {
+  id             Int     @id @default(autoincrement())
+  currency       String  // e.g., "ETH", "BTC", "USDC"
+  balance        Decimal @default(0)
+  depositAddress String  @unique
+
+  // Relation: A wallet must belong to one user
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
+}
