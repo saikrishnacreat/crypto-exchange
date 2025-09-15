@@ -7,6 +7,7 @@ import userRouter from './routes/user';
 import cors from 'cors';
 import priceRouter from './routes/prices';
 import p2pRouter from './routes/p2p';
+import transactionsRouter from './routes/transactions';
 
 dotenv.config();
 
@@ -21,6 +22,7 @@ app.use('/api/auth', authRouter);
 app.use('/api/user', userRouter);
 app.use('/api/prices', priceRouter);
 app.use('/api/p2p', p2pRouter);
+app.use('/api/transactions', transactionsRouter); 
 
 app.get('/', (req, res) => {
   res.send('Crypto Exchange Backend is running!');
