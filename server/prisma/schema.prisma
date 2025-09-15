@@ -23,6 +23,7 @@ model User {
 
   // Relation: A user can have many wallets
   wallets Wallet[]
+  offers  P2POffer[] 
 }
 
 // Define the Wallet model (table)
@@ -35,4 +36,18 @@ model Wallet {
   // Relation: A wallet must belong to one user
   userId Int
   user   User @relation(fields: [userId], references: [id])
+}
+
+model P2POffer {
+  id        Int      @id @default(autoincrement())
+  offerType String   // "BUY" or "SELL"
+  asset     String   // e.g., "ETH"
+  amount    Decimal
+  price     Decimal
+  status    String   @default("OPEN") // "OPEN", "ACCEPTED", "CLOSED"
+  createdAt DateTime @default(now())
+
+  // --- Corrected Relation ---
+  sellerId  Int
+  seller    User     @relation(fields: [sellerId], references: [id])
 }

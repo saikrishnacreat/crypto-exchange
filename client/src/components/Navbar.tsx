@@ -19,6 +19,7 @@ export default function Navbar() {
       <div className="flex gap-6">
         <Link href="/dashboard" className="text-lg font-semibold hover:text-blue-600">Dashboard</Link>
         <Link href="/spot" className="text-lg font-semibold hover:text-blue-600">Spot</Link>
+        <Link href="/p2p" className="text-lg font-semibold hover:text-blue-600">P2P</Link>
       </div>
       <button onClick={handleLogout} className="bg-red-500 text-white px-4 py-2 rounded-lg">
         Logout
