@@ -3,15 +3,19 @@ import express from 'express';
 import dotenv from 'dotenv';
 import prisma from './db'; // Import our prisma client
 import authRouter from './routes/auth';
+import cors from 'cors';
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+app.use(cors());
+
 // Middleware to parse JSON
 app.use(express.json());
-app.use('/api/auth', authRouter); 
+app.use('/api/auth', authRouter);
+
 
 app.get('/', (req, res) => {
   res.send('Crypto Exchange Backend is running!');
