@@ -3,6 +3,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import prisma from './db'; // Import our prisma client
 import authRouter from './routes/auth';
+import userRouter from './routes/user';
 import cors from 'cors';
 
 dotenv.config();
@@ -15,6 +16,7 @@ app.use(cors());
 // Middleware to parse JSON
 app.use(express.json());
 app.use('/api/auth', authRouter);
+app.use('/api/user', userRouter);
 
 
 app.get('/', (req, res) => {
