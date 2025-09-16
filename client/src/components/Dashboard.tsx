@@ -21,7 +21,7 @@ export default function Dashboard() {
       }
 
       try {
-        const res = await fetch('process.env.NEXT_PUBLIC_API_URL/api/user/me', {
+        const res = await fetch('${process.env.NEXT_PUBLIC_API_URL}/api/user/me', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

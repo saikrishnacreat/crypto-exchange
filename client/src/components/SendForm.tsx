@@ -16,7 +16,7 @@ export default function SendForm() {
     const token = localStorage.getItem('token');
 
     try {
-      const res = await fetch('process.env.NEXT_PUBLIC_API_URL/api/transactions/withdraw', {
+      const res = await fetch('${process.env.NEXT_PUBLIC_API_URL}/api/transactions/withdraw', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -33,9 +33,15 @@ export default function SendForm() {
       }
 
       setMessage(`Success! Tx Hash: ${data.txHash}`);
-    } catch (err: any) {
-      setMessage(`Error: ${err.message}`);
-    } finally {
+    } 
+    catch (err) {
+      if (err instanceof Error) {
+        setMessage(`Error: ${err.message}`);
+      } else {
+        setMessage('An unknown error occurred.');
+      }
+    }
+    finally {
       setIsLoading(false);
     }
   };

@@ -10,7 +10,7 @@ function ReceivePage() {
     // This is a simplified way to get the address.
     // In a real app with multiple wallets, this logic would be more complex.
     const token = localStorage.getItem('token');
-    fetch('process.env.NEXT_PUBLIC_API_URL/api/user/me', {
+    fetch('${process.env.NEXT_PUBLIC_API_URL}/api/user/me', {
       headers: { 'Authorization': `Bearer ${token}` }
     })
     .then(res => res.json())

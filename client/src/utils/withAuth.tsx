@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 const withAuth = (WrappedComponent: React.ComponentType) => {
-  const AuthComponent = (props: {}) => {
+  const AuthComponent = (props: object ) => {
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(true);
 
