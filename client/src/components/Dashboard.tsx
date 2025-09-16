@@ -21,7 +21,7 @@ export default function Dashboard() {
       }
 
       try {
-        const res = await fetch('http://localhost:3001/api/user/me', {
+        const res = await fetch('process.env.NEXT_PUBLIC_API_URL/api/user/me', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -36,8 +36,12 @@ export default function Dashboard() {
         const data: UserData = await res.json();
         setUserData(data);
 
-      } catch (err: any) {
-        setError(err.message);
+      }  catch (err) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError('An unknown error occurred.');
+        }
       }
     };
 

@@ -23,7 +23,7 @@ export default function P2PTrading() {
   useEffect(() => {
     const fetchOffers = async () => {
       try {
-        const res = await fetch('http://localhost:3001/api/p2p/offers');
+        const res = await fetch('process.env.NEXT_PUBLIC_API_URL/api/p2p/offers');
         const data = await res.json();
         setOffers(data);
       } catch (err) {
@@ -39,7 +39,7 @@ export default function P2PTrading() {
     const token = localStorage.getItem('token');
     
     try {
-      const res = await fetch('http://localhost:3001/api/p2p/create', {
+      const res = await fetch('process.env.NEXT_PUBLIC_API_URL/api/p2p/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -54,14 +54,18 @@ export default function P2PTrading() {
       }
       
       // Refresh the offers list after creating a new one
-      const offersRes = await fetch('http://localhost:3001/api/p2p/offers');
+      const offersRes = await fetch('process.env.NEXT_PUBLIC_API_URL/api/p2p/offers');
       const updatedOffers = await offersRes.json();
       setOffers(updatedOffers);
       setAmount('');
       setPrice('');
 
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError('An unknown error occurred.');
+      }
     }
   };
 

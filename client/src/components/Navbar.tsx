@@ -23,7 +23,7 @@ export default function Navbar() {
       // const decoded: any = jwtDecode(token);
       // setIsAdmin(decoded.isAdmin);
       // For now, we will just assume the first user is admin for UI purposes.
-      const decoded: any = jwtDecode(token);
+      const decoded: DecodedToken = jwtDecode(token);
       setIsAdmin(decoded.isAdmin); // Temporary check
     }
   }, [pathname]);

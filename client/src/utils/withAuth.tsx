@@ -3,8 +3,8 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-const withAuth = (WrappedComponent: React.ComponentType<any>) => {
-  const AuthComponent = (props: any) => {
+const withAuth = (WrappedComponent: React.ComponentType) => {
+  const AuthComponent = (props: {}) => {
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(true);
 

@@ -18,7 +18,7 @@ export default function LoginForm() {
     setSuccess('');
 
     try {
-      const res = await fetch('http://localhost:3001/api/auth/login', {
+      const res = await fetch('process.env.NEXT_PUBLIC_API_URL/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -38,7 +38,11 @@ export default function LoginForm() {
         router.push('/dashboard'); 
       }
     } catch (err) {
-      setError('Failed to connect to the server.');
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError('An unknown error occurred.');
+      }
     } finally {
       setIsLoading(false);
     }

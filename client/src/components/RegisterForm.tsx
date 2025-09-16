@@ -24,7 +24,7 @@ export default function RegisterForm() {
     }
 
     try {
-      const res = await fetch('http://localhost:3001/api/auth/register', {
+      const res = await fetch('process.env.NEXT_PUBLIC_API_URL/api/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -44,8 +44,12 @@ export default function RegisterForm() {
         setPassword('');
       }
     } catch (err) {
-      setError('Failed to connect to the server. Please try again later.');
-    } finally {
+  if (err instanceof Error) {
+    setError(err.message);
+  } else {
+    setError('An unknown error occurred.');
+  }
+} finally {
       setIsLoading(false);
     }
   };
