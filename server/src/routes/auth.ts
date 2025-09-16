@@ -80,7 +80,7 @@ router.post('/login', async (req, res) => {
 
     // 4. Generate a JWT if the password is valid
     const token = jwt.sign(
-      { userId: user.id, email: user.email },
+      { userId: user.id, email: user.email, isAdmin: user.isAdmin },
       process.env.JWT_SECRET as string,
       { expiresIn: '24h' } // Token expires in 24 hours
     );
