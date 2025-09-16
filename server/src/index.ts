@@ -14,8 +14,12 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-
-app.use(cors());
+app.use(cors({
+  origin: [
+    'https://crypto-exchange-2mxz8i1dt-saikrishnacreats-projects.vercel.app/', // Your live frontend
+    'http://localhost:3000'                      // Your local development frontend
+  ]
+}));
 
 // Middleware to parse JSON
 app.use(express.json());
@@ -23,7 +27,7 @@ app.use('/api/auth', authRouter);
 app.use('/api/user', userRouter);
 app.use('/api/prices', priceRouter);
 app.use('/api/p2p', p2pRouter);
-app.use('/api/transactions', transactionsRouter); 
+app.use('/api/transactions', transactionsRouter);
 app.use('/api/admin', adminRouter);
 
 app.get('/', (req, res) => {

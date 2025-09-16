@@ -10,7 +10,7 @@ export default function SpotTrading() {
   useEffect(() => {
     const fetchPrice = async () => {
       try {
-        const res = await fetch('${process.env.NEXT_PUBLIC_API_URL}/api/prices/eth-usd');
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/prices/eth-usd`);
         const data = await res.json();
         setEthPrice(parseFloat(data.price));
       } catch (error) {

@@ -24,7 +24,7 @@ export default function RegisterForm() {
     }
 
     try {
-      const res = await fetch('${process.env.NEXT_PUBLIC_API_URL}/api/auth/register', {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -32,7 +32,13 @@ export default function RegisterForm() {
         body: JSON.stringify({ name, email, password }),
       });
 
-      const data = await res.json();
+      // const data = await res.json();
+
+      const responseText = await res.text();
+      console.log("Raw Server Response:", responseText);
+
+      // Now parse the text
+      const data = JSON.parse(responseText);
 
       if (!res.ok) {
         setError(data.error || 'Something went wrong.');

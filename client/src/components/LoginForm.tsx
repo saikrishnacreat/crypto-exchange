@@ -18,7 +18,7 @@ export default function LoginForm() {
     setSuccess('');
 
     try {
-      const res = await fetch('${process.env.NEXT_PUBLIC_API_URL}/api/auth/login', {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -27,6 +27,8 @@ export default function LoginForm() {
       });
 
       const data = await res.json();
+
+      console.log(data);
 
       if (!res.ok) {
         setError(data.error || 'Login failed.');
