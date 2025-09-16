@@ -20,7 +20,7 @@ export default function AdminUsers() {
   const fetchUsers = async () => {
     const token = localStorage.getItem('token');
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/users`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/admin/users`, {
         headers: { 'Authorization': `Bearer ${token}` },
       });
       if (res.status === 403) {
@@ -49,7 +49,7 @@ export default function AdminUsers() {
     if (!editingUser) return;
 
     const token = localStorage.getItem('token');
-    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/users/${editingUser.id}`, {
+    await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/admin/users/${editingUser.id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
